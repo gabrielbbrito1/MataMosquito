@@ -16,13 +16,15 @@
             <img id="v2" src="../imagens/coracao_cheio.png" alt="">
             <img id="v3" src="../imagens/coracao_cheio.png" alt="">
         </div>
-        <div class="time"> Tempo restante ?</div>
+        <div class="time"> Tempo restante: <span id="timeLeft"></span></div>
     </div>
 
     <script>
-		setInterval(() =>{
+        document.getElementById('timeLeft').innerHTML = time
+
+		const criaMosquito = setInterval(() =>{
             randomPos()
-        },1000)
+        },1200)
 	</script>
 </body>
 </html>

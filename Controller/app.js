@@ -2,6 +2,7 @@
 let height = 0
 let width = 0
 let lives = 1
+let time = 30
 
 // Recebe os tamanhos da janela
 const ajustaTela = () => {
@@ -10,15 +11,31 @@ const ajustaTela = () => {
 
 }
 
+// Executa toda vez que a tela é ajustada
 ajustaTela()
 
-// Função para posicionar randomicamente na tela
+
+// Função para o tempo restante 
+
+const timeLeft = setInterval(() =>{
+	time--
+	
+	if(time <= 0){
+		clearInterval(timeLeft)
+		clearInterval(criaMosquito)
+	}
+
+	document.getElementById('timeLeft').innerHTML = time
+},1000)
+
+
 const randomPos = () => {
 	
-	// Remove o antigo mosquito caso exista e reduz os pontos de vida
+	// Remove o antigo mosquito caso exista e reduz os pontos de vida caso haja mosquito na tela quando ela for executada novamente
 	if(document.getElementById('mosquito')){
 		document.getElementById('mosquito').remove()
-		// gameover se perder todas as vidas
+
+		// gameover se perder todas as vidas , incrementa coração vazio a cada vez que a condição é executada
 		if(lives > 3) {
 			window.location.href = 'gameover.html'
 		}else {
@@ -32,7 +49,7 @@ const randomPos = () => {
 	let posX = Math.floor(Math.random() * width) - 90
 	let posY = Math.floor(Math.random() * height) - 90
 
-	// Caso a posição seja menor do que 0, será colocado em 0 para evitar que o mosquito saia da tela
+	// Tratamento de erros. Caso a posição seja menor do que 0, será colocado em 0 para evitar que o mosquito saia da tela
 	posX = posX < 0 ? 0 : posX
 	posY = posY < 0 ? 0 : posY
 
