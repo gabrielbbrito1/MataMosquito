@@ -1,6 +1,8 @@
 # Mata Mosquito
 
-Para iniciar o Joguinho, entre no arquivo start.html e clique em Jogar!
+### Como iniciar o projeto?
+
+Para iniciar o Joguinho, é só baixar o projeto, entrar no arquivo start.html e clicar em Jogar!
 
 ### Ajustes e melhorias
 
