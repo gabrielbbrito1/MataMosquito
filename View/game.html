@@ -9,6 +9,9 @@
 	<script src="../Controller/app.js"></script>
 </head>
 <body onresize="ajustaTela()">
+    <div class="hudPoints">
+        <div class="points"> Pontos: <span id="hasPoints"></span></div>
+    </div>
     
     <div class="hud">
         <div class="hearts">
@@ -21,10 +24,9 @@
 
     <script>
         document.getElementById('timeLeft').innerHTML = time
-
 		const criaMosquito = setInterval(() =>{
             randomPos()
-        },1200)
+        },timeMosquito)
 	</script>
 </body>
 </html>

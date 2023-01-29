@@ -3,7 +3,29 @@ let height = 0
 let width = 0
 let lives = 1
 let time = 30
+let points = 0
+let timeMosquito = 2500
 
+const sound = new Audio()
+sound.src = "../controller/slap.mp3"
+sound.preload='auto'
+
+
+// Lógica da Dificuldade
+let dificulty = window.location.search
+dificulty = dificulty.replace('?', '')
+
+if(dificulty === 'easy'){
+	timeMosquito = 1750
+} else if (dificulty === 'normal'){
+	timeMosquito = 1250
+} else if (dificulty === 'hard'){
+	timeMosquito = 1000
+} else if (dificulty === 'impossible'){
+	timeMosquito = 750
+} else{
+	time = 1
+}
 // Recebe os tamanhos da janela
 const ajustaTela = () => {
 	height = window.innerHeight
@@ -18,16 +40,25 @@ ajustaTela()
 // Função para o tempo restante 
 
 const timeLeft = setInterval(() =>{
-	time--
-	
-	if(time <= 0){
-		clearInterval(timeLeft)
-		clearInterval(criaMosquito)
+	// se a dificuldade for sobrevivência, o tempo será acrescentado.
+	if(dificulty === 'survival'){
+		timeMosquito -= 100
+		document.getElementById('timeLeft').innerHTML = time
+		time++
+		console.log(timeMosquito)
+	} else{
+		time--
+		
+		if(time <= 0){
+			clearInterval(timeLeft)
+			clearInterval(criaMosquito)
+			// Altera para a tela de vitória caso o jogador consiga chegar em 0
+			window.location.href = 'victory.html'
+		}
+
+		document.getElementById('timeLeft').innerHTML = time
 	}
-
-	document.getElementById('timeLeft').innerHTML = time
 },1000)
-
 
 const randomPos = () => {
 	
@@ -61,9 +92,21 @@ const randomPos = () => {
 	mosquito.style.top = posY + 'px'
 	mosquito.style.position = 'absolute'
 	mosquito.id = 'mosquito'
-	mosquito.onclick = function () {
-		this.remove() 
-	}
+	// mosquito.onclick = function () {
+	// 	this.remove()
+	// 	points += 10
+	// 	document.getElementById('hasPoints').innerHTML = points
+	// 	sound.play() 
+	// }
+	mosquito.addEventListener("click", function(){
+		this.remove()
+		points += 10
+		document.getElementById('hasPoints').innerHTML = points
+		console.log(sound)
+		sound.addEventListener("canplaythrough", function(){
+			sound.play()
+		})
+	})
 		
 	document.body.appendChild(mosquito)
 }

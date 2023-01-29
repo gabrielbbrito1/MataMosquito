@@ -1,3 +1,6 @@
+html{
+	cursor: url(../imagens/mata_mosca.png) 30 30, auto;
+}
 body{
 	background-image: url(../imagens/bg.jpg);
 	background-repeat: no-repeat top;
@@ -48,7 +51,18 @@ body{
 	opacity: 0.7;
 
 }
-
+.hudPoints{
+	position: absolute;
+	width: 100px;
+	padding: 10px;
+	top: 0px;
+	right: 0px;
+	border-top: solid 1px #fff;
+	background-color: #fff;
+	opacity: 0.7;
+	font-weight: bold;
+	font-size: 1rem;
+}
 .hearts{
 	display: flex;
 	justify-content: left;
@@ -59,4 +73,17 @@ body{
 	justify-content: left;
 	font-size: 20px;
 	font-weight: bold;
+}
+select {
+	-webkit-appearance: listbox !important;
+	/*webkit browsers */
+	-moz-appearance: listbox !important;
+	/*Firefox */
+	appearance: listbox !important;
+	/* modern browsers */
+	border-radius: 0;
+  
+  }
+.btn-dark, .btn-danger{
+	width: 200px;
 }
