@@ -6,10 +6,8 @@ let time = 30
 let points = 0
 let timeMosquito = 2500
 
-const sound = new Audio()
-sound.src = "../controller/slap.mp3"
-sound.preload='auto'
-
+let sound = new Audio("../controller/slap.mp3")
+sound.preload ='auto'
 
 // Lógica da Dificuldade
 let dificulty = window.location.search
@@ -36,7 +34,14 @@ const ajustaTela = () => {
 // Executa toda vez que a tela é ajustada
 ajustaTela()
 
+// Som do slap
 
+const mouseSound = ()=>{
+	sound.volume = 0.5
+	sound.play()
+}
+
+window.addEventListener("click", mouseSound, false)
 // Função para o tempo restante 
 
 const timeLeft = setInterval(() =>{
@@ -103,9 +108,6 @@ const randomPos = () => {
 		points += 10
 		document.getElementById('hasPoints').innerHTML = points
 		console.log(sound)
-		sound.addEventListener("canplaythrough", function(){
-			sound.play()
-		})
 	})
 		
 	document.body.appendChild(mosquito)

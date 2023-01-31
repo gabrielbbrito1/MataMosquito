@@ -39,7 +39,14 @@ body{
 }
 
 /* Estilo do HUD */
+.hudButton{
+	position: absolute;
+	width: 60px;
+	padding: 10px;
+	top: 0px;
+	left: 0px;
 
+}
 .hud{
 	position: absolute;
 	width: 190px;
@@ -67,7 +74,32 @@ body{
 	display: flex;
 	justify-content: left;
 }
-
+.returnButton{
+	background-color: #212529;
+	border-color: #212529;
+	color: white;
+	height: 40px;
+	width: 50px;
+	box-sizing: border-box;
+	font-size: 0.95em;
+}
+.returnButton:hover{
+	background-color: #424649;
+	cursor: pointer;
+}
+.returnButton:active{
+	background-color: #4d5154;
+}
+.arrow{
+	border: solid rgb(255, 255, 255);
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+}
+.left{
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
+}
 .time{
 	display: flex;
 	justify-content: left;
