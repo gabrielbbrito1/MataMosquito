@@ -4,7 +4,7 @@ let width = 0
 let lives = 1
 let time = 30
 let points = 0
-let timeMosquito = 2500
+let timeMosquito = 1000
 
 let sound = new Audio("../controller/slap.mp3")
 sound.preload ='auto'
