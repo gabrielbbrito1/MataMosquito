@@ -4,7 +4,7 @@ let width = 0
 let lives = 1
 let time = 30
 let points = 0
-let timeMosquito = 1000
+let timeMosquito = 1200
 
 let sound = new Audio("../controller/slap.mp3")
 sound.preload ='auto'
@@ -47,7 +47,9 @@ window.addEventListener("click", mouseSound, false)
 const timeLeft = setInterval(() =>{
 	// se a dificuldade for sobrevivência, o tempo será acrescentado.
 	if(dificulty === 'survival'){
-		timeMosquito -= 100
+		if (time % 10 === 0 & timeMosquito >= 1000){
+			timeMosquito -= 500
+		}
 		document.getElementById('timeLeft').innerHTML = time
 		time++
 		console.log(timeMosquito)
@@ -82,8 +84,8 @@ const randomPos = () => {
 	}
 
 	// Posiciona o mosquito
-	let posX = Math.floor(Math.random() * width) - 90
-	let posY = Math.floor(Math.random() * height) - 90
+	let posX = Math.floor(Math.random() * width) - 150
+	let posY = Math.floor(Math.random() * height) - 150
 
 	// Tratamento de erros. Caso a posição seja menor do que 0, será colocado em 0 para evitar que o mosquito saia da tela
 	posX = posX < 0 ? 0 : posX
