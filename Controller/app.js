@@ -9,6 +9,14 @@ let timeMosquito = 1200
 let sound = new Audio("../controller/slap.mp3")
 sound.preload ='auto'
 
+let background = new Audio("../controller/background.mp3")
+background.preload = 'auto'
+
+let wrong = new Audio("../controller/wrong.mp3")
+wrong.preload = 'auto'
+wrong.playbackRate = 2.0
+wrong.volume = 0.1
+
 // Lógica da Dificuldade
 let dificulty = window.location.search
 dificulty = dificulty.replace('?', '')
@@ -40,8 +48,14 @@ const mouseSound = ()=>{
 	sound.volume = 0.5
 	sound.play()
 }
+const backgroundSnd = () =>{
+	background.volume = 0.3
+	background.play()
+	background.loop = true	
+}
 
 window.addEventListener("click", mouseSound, false)
+window.addEventListener("load", backgroundSnd, false)
 // Função para o tempo restante 
 
 const timeLeft = setInterval(() =>{
@@ -52,7 +66,6 @@ const timeLeft = setInterval(() =>{
 		}
 		document.getElementById('timeLeft').innerHTML = time
 		time++
-		console.log(timeMosquito)
 	} else{
 		time--
 		
@@ -72,6 +85,8 @@ const randomPos = () => {
 	// Remove o antigo mosquito caso exista e reduz os pontos de vida caso haja mosquito na tela quando ela for executada novamente
 	if(document.getElementById('mosquito')){
 		document.getElementById('mosquito').remove()
+		wrong.play()
+
 
 		// gameover se perder todas as vidas , incrementa coração vazio a cada vez que a condição é executada
 		if(lives > 3) {
@@ -99,17 +114,11 @@ const randomPos = () => {
 	mosquito.style.top = posY + 'px'
 	mosquito.style.position = 'absolute'
 	mosquito.id = 'mosquito'
-	// mosquito.onclick = function () {
-	// 	this.remove()
-	// 	points += 10
-	// 	document.getElementById('hasPoints').innerHTML = points
-	// 	sound.play() 
-	// }
+
 	mosquito.addEventListener("click", function(){
 		this.remove()
 		points += 10
 		document.getElementById('hasPoints').innerHTML = points
-		console.log(sound)
 	})
 		
 	document.body.appendChild(mosquito)
